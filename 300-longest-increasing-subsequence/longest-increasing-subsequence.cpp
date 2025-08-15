@@ -1,21 +1,21 @@
 class Solution {
 public:
-    int lengthOfLIS(std::vector<int>& nums) {
-        if (nums.empty()) {
+    int lengthOfLIS(vector<int>& nums) {
+        if(nums.empty()){
             return 0;
         }
 
-        int n = nums.size();
-        std::vector<int> dp(n, 1);
+        int n=nums.size();
 
-        for (int i = 1; i < n; ++i) {
-            for (int j = 0; j < i; ++j) {
-                if (nums[i] > nums[j]) {
-                    dp[i] = std::max(dp[i], dp[j] + 1);
+        vector<int>dp(n,1);
+
+        for(auto i=0;i<n;i++){
+            for(auto j=0;j<i;j++){
+                if(nums[i]>nums[j]){
+                    dp[i] = max(dp[i],dp[j] +1);
                 }
             }
         }
-
         return *std::max_element(dp.begin(), dp.end());
     }
 };
